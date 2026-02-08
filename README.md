@@ -1,4 +1,5 @@
-**Description**
+_**HISSOA(Helping ISSO Advance)**_
+----------------------------------
 
 Simple overview of use/purpose.
 
@@ -12,7 +13,7 @@ An in-depth paragraph about your project and an overview of its use.
 
 ### **Dependencies**
 
-*   Describe any prerequisites, libraries, OS version, etc., needed before installing the program.
+*   Describe any prerequisites, libraries, OS version, etc., needed before installing program.
     
 *   ex. Windows 10
     
