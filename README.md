@@ -1,4 +1,4 @@
-**HISSOA (Helping ISSO Advance)**
+**Description**
 
 Simple overview of use/purpose.
 
