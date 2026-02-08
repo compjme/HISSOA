@@ -12,7 +12,7 @@ An in-depth paragraph about your project and an overview of its use.
 
 ### **Dependencies**
 
-*   Describe any prerequisites, libraries, OS version, etc., needed before installing program.
+*   Describe any prerequisites, libraries, OS version, etc., needed before installing the program.
     
 *   ex. Windows 10
     
@@ -53,7 +53,7 @@ Jayme:[compjme](https://github.com/compjme)
 
 Mohammed:[MAMAT15](https://github.com/MAMAT15)
 
-Rodrigo:
+Rodrigo: [RexTheBeast](https://github.com/RexTheBeast)
 
 **Version History**
 
