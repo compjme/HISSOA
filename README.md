@@ -46,7 +46,7 @@ An in-depth paragraph about your project and an overview of its use.
 **Authors**
 -----------
 
-Alex:
+Axel: [Ax3lMejia] (https://github.com/Ax3lMejia) 
 
 Celso:
 
