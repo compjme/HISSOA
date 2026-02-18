@@ -69,4 +69,4 @@ Rodrigo: [RexTheBeast](https://github.com/RexTheBeast)
 **Acknowledgments**
 -------------------
 
-(Testing)
+(For future use)
