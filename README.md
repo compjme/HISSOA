@@ -25,6 +25,10 @@ An in-depth paragraph about your project and an overview of its use.
 *   How/where to download your program
     
 *   Any modifications needed to be made to files/folders
+
+## How to Run
+*   npm install
+*   npm run dev
     
 
 (not implemented yet)
