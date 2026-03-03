@@ -9,11 +9,12 @@ import Community from "./pages/Community";
 import Resources from "./pages/Resources";
 import FAQChatbot from "./pages/FAQChatbot";
 import Notfound from "./pages/Notfound";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <div className="app">
-      <Navbar />
+      <Layout />
 
       <Routes>
         <Route path="/" element={<Home />} />
