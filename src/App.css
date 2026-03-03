@@ -12,10 +12,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 20em #cce513aa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 20em #00ff44aa);
 }
 
 @keyframes logo-spin {
@@ -39,4 +39,81 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.event-card {
+  background: rgba(243, 235, 221, 0.10);
+  border: 1px solid rgba(243, 235, 221, 0.15);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.event-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.event-meta {
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.event-location {
+  margin-top: 8px;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.event-desc {
+  margin: 12px 0;
+  opacity: 0.92;
+  line-height: 1.45;
+}
+
+.event-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.event-tag {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(243, 235, 221, 0.14);
+  border: 1px solid rgba(243, 235, 221, 0.18);
+}
+
+.event-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.event-btn {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(243, 235, 221, 0.18);
+  border: 1px solid rgba(243, 235, 221, 0.22);
+  color: #fff;
+  font-weight: 600;
+}
+
+.event-btn:hover {
+  background: rgba(243, 235, 221, 0.24);
+}
+
+.event-muted {
+  font-size: 13px;
+  opacity: 0.8;
 }
