@@ -1,3 +1,4 @@
+import Navbar from "./components/layout/Navbar";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -7,11 +8,13 @@ import Scheduling from "./pages/Scheduling";
 import Community from "./pages/Community";
 import Resources from "./pages/Resources";
 import FAQChatbot from "./pages/FAQChatbot";
-import NotFound from "./pages/Notfound";
+import Notfound from "./pages/Notfound";
 
 function App() {
   return (
     <div className="app">
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
@@ -19,9 +22,7 @@ function App() {
         <Route path="/community" element={<Community />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/faq" element={<FAQChatbot />} />
-
-        {/* Catch-all route */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
     </div>
   );
