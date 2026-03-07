@@ -1,4 +1,4 @@
-import logo from "../assets/logo.webp";
+import ISSOLOGO from "../assets/ISSOLOGO.png";
 
 function Home() {
   return (
@@ -7,7 +7,7 @@ function Home() {
       <h1>Immigrant Student Success Office</h1>
 
       <img
-        src={logo}
+        src={ISSOLOGO}
         alt="ISSO logo "
         style={{ width: "200px", marginTop: "40px" }}
       />
