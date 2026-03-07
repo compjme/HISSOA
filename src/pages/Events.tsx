@@ -24,7 +24,7 @@ const events: EventItem[] = [
 
 export default function Events() {
   return (
-    <div className="page">
+    <div className="events-page">
       <h1>Events</h1>
       <p>Upcoming events hosted or supported by ISSO.</p>
 
