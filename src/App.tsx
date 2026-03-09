@@ -12,10 +12,8 @@ import Layout from "./components/layout/Layout";
 
 function App() {
   return (
-    <div className="app">
-      <Layout />
-
-      <Routes>
+    <Routes>
+      <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/scheduling" element={<Scheduling />} />
@@ -23,8 +21,8 @@ function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/faq" element={<FAQChatbot />} />
         <Route path="*" element={<Notfound />} />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 }
 

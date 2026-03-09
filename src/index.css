@@ -1,4 +1,4 @@
-:root {
+:root { 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -25,10 +25,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: block;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #7a1e2c;
+  color: #f3ebdd;
 }
 
 h1 {

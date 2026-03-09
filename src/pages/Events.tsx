@@ -4,7 +4,7 @@ const events: EventItem[] = [
   {
     id: "1",
     title: "ISSO Graduation Celebration",
-    date: "May 8, 2026",
+    date: "May 7, 2026",
     time: "5:00 PM – 8:00 PM",
     location: "Brooklyn College",
     description: "Celebrate our immigrant students and their achievements.",
@@ -16,7 +16,7 @@ const events: EventItem[] = [
     title: "Dream Big: Community Conversation",
     date: "Mar 24, 2026",
     time: "2:45 PM",
-    location: "Zoom",
+    location: "TBA",
     description: "A space for discussion, support, and student voices.",
     tags: ["Workshop"],
   },
@@ -24,7 +24,7 @@ const events: EventItem[] = [
 
 export default function Events() {
   return (
-    <div className="page">
+    <div className="events-page">
       <h1>Events</h1>
       <p>Upcoming events hosted or supported by ISSO.</p>
 
