@@ -2,14 +2,16 @@
   display: flex;
   gap: 60px;
   padding: 10px;
-  justify-content: center;
+  padding-left: 40px; 
+  padding-right: 40px;
+  justify-content: space-between;
   align-items: center;
 
   position: sticky;
   top: 0;
   z-index: 1000;
 
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 
   border: 5px solid rgba(0, 0, 0, 0.15);
