@@ -1,5 +1,24 @@
 .navbar {
   display: flex;
-  gap: 40px;
-  padding: 12px;
+  gap: 60px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 75%;
+  margin: 0 auto;
+
+  border: 5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+  background-color: #7a1e2c;
+  box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.586);
 }
+
+
+
+
+
