@@ -16,14 +16,23 @@ const Hero = () => {
               Support, Guidance, and Community For Immigrant Students.
             </p>
             <div className="hero-buttons">
-              <button>About Us</button>
-              <button>Meet the Team!</button>
+              <button> About Us </button>
+              <button> Meet the Team! </button>
             </div>
           </div>
         </div>
         {/* hero image */}
-        <div className="hero-image"></div>
-        <img src={ISSOLOGO} alt="" />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "fit-content",
+            height: "700px",
+            imageResolution: "10dppx",
+          }}
+        >
+          <img src={ISSOLOGO} alt="" />
+        </div>
       </div>
     </>
   );
