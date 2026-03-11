@@ -74,14 +74,14 @@
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 12px;
-  background: rgba(243, 235, 221, 0.18);
+  background: #a35363;
   border: 1px solid rgba(243, 235, 221, 0.22);
   color: #fff;
   font-weight: 600;
 }
 
 .event-btn:hover {
-  background: rgba(243, 235, 221, 0.24);
+  background: #7a1e2c;
 }
 
 .event-muted {
