@@ -1,5 +1,5 @@
 import "../layout/hero.css";
-import ISSOLOGO from "../../assets/ISSOLOGO.png";
+import TEAM from "../../assets/Team.jpeg";
 
 const Hero = () => {
   return (
@@ -27,11 +27,11 @@ const Hero = () => {
             display: "flex",
             justifyContent: "center",
             width: "fit-content",
-            height: "700px",
-            imageResolution: "10dppx",
+            height: "600px",
+            paddingRight: "100px",
           }}
         >
-          <img src={ISSOLOGO} alt="" />
+          <img src={TEAM} alt="" />
         </div>
       </div>
     </>
