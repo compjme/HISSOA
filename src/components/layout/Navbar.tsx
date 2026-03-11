@@ -16,7 +16,7 @@ const linkStyle = ({ isActive }: { isActive: boolean }) => ({
   textDecoration: isActive ? "underline" : "none",
 });
 
-//cleans up the navigation bar so that it adds styling when active (navlink>link)
+/*cleans up the navigation bar so that it adds styling when active (navlink>link)*/
 export default function Navbar() {
   return (
     <nav className="navbar">

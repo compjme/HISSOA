@@ -1,5 +1,5 @@
 /*import ISSOLOGO from "../assets/ISSOLOGO.png";*/
-import Hero from "../components/layout/hero";
+import Hero from "../components/layout/Hero";
 
 function Home() {
   return (
