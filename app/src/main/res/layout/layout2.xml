@@ -1,133 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F3E6E8">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free Legal \nAssistance"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            android:scaleX="4"
-            android:scaleY="4"
-            android:text="Contact Us"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            tools:layout_editor_absoluteX="128dp" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:text="Scholarships \nand Aid"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2900 Bedford Ave, 117 Roosevelt Hall"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            tools:layout_editor_absoluteX="34dp" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:textSize="11sp"
+        android:text="Wellness and \nConsunseling"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Brooklyn, NY, 11210"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            tools:layout_editor_absoluteX="34dp" />
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Mentoring"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email: ISSO@brooklyn.cuny.edu"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
-            tools:layout_editor_absoluteX="34dp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone: 718-951-5023"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_editor_absoluteY="177dp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="72dp"
-            android:layout_height="96dp"
-            android:src="@android:drawable/ic_menu_gallery"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="212dp" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="86dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="24dp"
-            android:src="@android:drawable/ic_menu_gallery"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            tools:layout_editor_absoluteY="212dp"
-            />
-
-        <EditText
-            android:id="@+id/editTextText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Name"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="396dp" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX="2"
-            android:scaleY="2"
-            android:text="Inqury Form"
-            tools:layout_editor_absoluteX="76dp"
-            tools:layout_editor_absoluteY="356dp" />
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="Email"
-            android:inputType="textEmailAddress"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="452dp" />
-
-        <EditText
-            android:id="@+id/editTextPhone2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="Phone"
-            android:inputType="phone"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="510dp" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="667dp" />
-
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="276dp"
-            android:layout_height="97dp"
-            android:ems="10"
-            android:inputType="text"
-            android:gravity="fill_horizontal"
-            android:text="Description"
-            tools:layout_editor_absoluteX="44dp"
-            tools:layout_editor_absoluteY="559dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
