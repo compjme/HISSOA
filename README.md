@@ -1,12 +1,16 @@
 _**HISSOA(Helping ISSO Advance)**_
 ----------------------------------
 
-Simple overview of use/purpose.
+Support, advocate, and empower students from a variety of immigration backgrounds through an intentional philosophy of holistic support by supporting the immigrant student success office (ISSO) advance their borders and reach.
 
 **Description**
 ---------------
 
-An in-depth paragraph about your project and an overview of its use.
+• A public-facing website with dynamic events (RSVP), structured legal resources, and FAQ system.
+• A secure student portal with authentication and role-based access or a singular usage for staff to control the website through the app
+• Appointment scheduling system with availability logic and automated confirmations that will sent to ISSO staff via whatsapp 
+• AI-powered FAQ assistant with safeguards against legal advice
+• Database-driven backend for scalability and maintainability
 
 **Getting Started**
 -------------------
@@ -15,10 +19,9 @@ An in-depth paragraph about your project and an overview of its use.
 
 *   Describe any prerequisites, libraries, OS version, etc., needed before installing program.
     
-*   ex. Windows 10
+*   Website: Node.js
+*   App: Android Studio
     
-
-(for future use)
 
 ### **Installing**
 
@@ -27,25 +30,20 @@ An in-depth paragraph about your project and an overview of its use.
 *   Any modifications needed to be made to files/folders
 
 ## How to Run
-*   npm install
-*   npm run dev
+*   Website:npm install
+*           npm run dev
+*   App: Android studio will handle the running process on a virtual device
     
-
-(not implemented yet)
 
 ### **Executing program**
 
-*   How to run the program
+*   Test out the features available
     
-*   Step-by-step bullets
-    
-
-(not implemented yet)
 
 **Help**
 --------
-
-(not implemented yet)
+Website: Axel & Jayme
+App: Mohammed, Rodrigo and Celso
 
 **Authors**
 -----------
@@ -62,13 +60,13 @@ Mohammed:[MAMAT15](https://github.com/MAMAT15)
 Rodrigo: [RexTheBeast](https://github.com/RexTheBeast)
 
 **Version History**
-
-(for future use)
+Website (1.0):Frontend details and features have been implemented with the layout being established
+App (1.0):Main page and about us page implemented
+    (1.1):Added the services and allies pages
 
 **License**
 -----------
-
-(for future use)
+N/a
 
 **Acknowledgments**
 -------------------
