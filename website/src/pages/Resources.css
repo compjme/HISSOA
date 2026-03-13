@@ -1,0 +1,18 @@
+.bold-text {
+    font-weight: bold;
+}
+
+.buttons {
+ 
+      margin-right: 10px;
+  padding: 10px 18px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+.buttons button:hover {
+  background-color: #a35363;
+}
