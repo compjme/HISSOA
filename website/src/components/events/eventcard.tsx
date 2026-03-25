@@ -3,6 +3,8 @@ export type EventItem = {
   title: string;
   date: string;
   time?: string;
+  start?: string;
+  end?: string;
   location?: string;
   description?: string;
   rsvpUrl?: string;
