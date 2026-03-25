@@ -43,7 +43,7 @@ Support, advocate, and empower students from a variety of immigration background
 **Help**
 --------
 Website: Axel & Jayme
-App: Mohammed, Rodrigo and Celso
+App: Mohammed, Rodrigo & Celso
 
 **Authors**
 -----------
