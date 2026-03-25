@@ -104,19 +104,22 @@
   background-color: #a35363;
   transform: translateY(-2px);
 }
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap; /* important for mobile */
+}
 
 .hero-image-wrapper {
-  display: flex;
-  justify-content : center; 
-  width: fit-content;
-  height: 600px;
-  padding-right: 100px;
+  flex: 1;
+  max-width: 500px;
 }
 
 .hero-image-wrapper img {
   width: 100%;
-  max-width: fit-content;
-  height: 500px;
+  height: auto;
+  object-fit: cover;
   border-radius: 12px;
-  display: block;
 }
