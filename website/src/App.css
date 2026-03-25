@@ -95,3 +95,28 @@
   text-align: center;
   padding: 40px 20px;
 }
+
+.events-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+
+.events-calendar {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(243, 235, 221, 0.08);
+  border: 1px solid rgba(243, 235, 221, 0.12);
+}
+
+.calendar-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.calendar-list li {
+  margin-bottom: 10px;
+}
