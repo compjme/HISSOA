@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import EventCard, { type EventItem } from "../components/events/eventcard";
 import EventsCalendar from "../components/events/EventsCalendar";
-import { events as initialEvents } from "../data/events";
+import { getEvents } from "../api/eventsApi";
 
 export default function Events() {
   const [view, setView] = useState<"cards" | "calendar">("cards");
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    // simulate loading data
-    setTimeout(() => {
-      setEvents(initialEvents);
-      setLoading(false);
-    }, 500);
+    async function loadEvents() {
+      try {
+        const data = await getEvents();
+        setEvents(data);
+      } catch (err) {
+        setError("Failed to load events.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadEvents();
   }, []);
 
   return (
@@ -28,6 +36,8 @@ export default function Events() {
 
       {loading ? (
         <p>Loading events...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : view === "cards" ? (
         <div className="events-grid">
           {events.map((e) => (
