@@ -5,7 +5,7 @@
   background-color: #f6f1eb;
 }
 
-.hero-card {
+.card {
   display:grid;
   grid-template-columns: 1fr 1fr;
   min-height: 650px;
@@ -23,7 +23,7 @@
 
 /* desktop layout */
 @media (min-width: 768px) {
-  .hero-container {
+  .card {
     grid-template-columns: 1fr 1fr;
   }
 }

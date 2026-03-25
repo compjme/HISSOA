@@ -1,11 +1,11 @@
-import "../layout/hero.css";
+import "./Hero.css";
 import TEAM from "../../assets/Team.jpeg";
 
 const Hero = () => {
   return (
     <>
       <section className="hero-section">
-        <div className="hero-card">
+        <div className="card">
           {/* left side */}
           <div className="hero-text-section">
             <div className="hero-text">
