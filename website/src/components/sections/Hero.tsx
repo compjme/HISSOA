@@ -26,7 +26,15 @@ const Hero = () => {
                 >
                   About Us
                 </button>
-                <button> Meet the Team! </button>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("Team")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  Meet the Team!
+                </button>
               </div>
             </div>
           </div>
