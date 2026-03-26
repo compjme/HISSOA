@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 60px 20px;
-  background-color: #f6f1eb;
+  background-color: transparent;
 }
 
 .card {
@@ -10,14 +10,16 @@
   grid-template-columns: 1fr 1fr;
   min-height: 650px;
   padding: 40px; 
-  max-width: 5000px;
-  width: fit-content;
-  background: white;
   border-radius: 24px;
+  width: 9000px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   border: 1px solid #e6d8dd; 
   gap: 40px; 
   align-items: center; 
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);        
+  -webkit-backdrop-filter: blur(10px); 
 }
 
 
@@ -104,6 +106,7 @@
   background-color: #a35363;
   transform: translateY(-2px);
 }
+
 .hero-container {
   display: flex;
   align-items: center;
@@ -114,7 +117,8 @@
 
 .hero-image-wrapper {
   flex: 1;
-  max-width: 500px;
+  max-width: 800px;
+
 }
 
 .hero-image-wrapper img {

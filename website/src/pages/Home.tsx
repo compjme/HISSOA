@@ -1,11 +1,11 @@
 import Hero from "../components/sections/Hero";
-import AboutTeam from "../components/sections/AboutTeam";
+import AboutUs from "../components/sections/AboutUs";
 
 function Home() {
   return (
     <div>
       <Hero />
-      <AboutTeam />
+      <AboutUs />
     </div>
   );
 }

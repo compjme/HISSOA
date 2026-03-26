@@ -17,7 +17,15 @@ const Hero = () => {
                 Support, Guidance, and Community For Immigrant Students.
               </p>
               <div className="hero-buttons">
-                <button> About Us </button>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("about")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  About Us
+                </button>
                 <button> Meet the Team! </button>
               </div>
             </div>
