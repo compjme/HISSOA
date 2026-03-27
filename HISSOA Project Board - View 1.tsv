@@ -1,0 +1,17 @@
+Title	URL	Assignees	Status
+Implement the AI chatbot feature (app and web)	https://github.com/MAMAT15/app/issues/1		Todo
+Implement an admin access (website and app)	https://github.com/MAMAT15/app/issues/9		Todo
+Connect both the app and website	https://github.com/MAMAT15/app/issues/11		Todo
+(optional) Integrate the office's whatsapp groupchat (app and website)	https://github.com/MAMAT15/app/issues/13		Todo
+Implement the scheduling page/feature (app and website)	https://github.com/MAMAT15/app/issues/14		Todo
+Create a log-in system (app)	https://github.com/MAMAT15/app/issues/2		In progress
+Create a log-in system (website)	https://github.com/MAMAT15/app/issues/5		In progress
+Improve the layout design (app)	https://github.com/MAMAT15/app/issues/6		In progress
+Create a firebase database to preserve and share log-in credentials (app and website)	https://github.com/MAMAT15/app/issues/12		In progress
+Adjusting the homepage activities and adding new features to it	https://github.com/MAMAT15/app/issues/16		In progress
+Create a homepage (app)	https://github.com/MAMAT15/app/issues/3		Done
+Create a homepage (website)	https://github.com/MAMAT15/app/issues/4		Done
+Added the contact us and service pages (app)	https://github.com/MAMAT15/app/issues/7		Done
+Added the events page (website)	https://github.com/MAMAT15/app/issues/8		Done
+Adjusted the homepage design	https://github.com/MAMAT15/app/issues/10		Done
+Create a generic inquiry form (app)	https://github.com/MAMAT15/app/issues/15		Done
