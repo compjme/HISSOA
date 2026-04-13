@@ -30,7 +30,7 @@ const CommentSection: React.FC = () => {
         {
           id: 11,
           author: "Adam Safor",
-          text: "I agree, it's nice to have a place where people can share openly.",
+          text: "I agree, it's nice to have a place where we can share openly.",
           timestamp: "Just now",
         },
       ],

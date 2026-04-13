@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import EventCard, { type EventItem } from "../components/events/eventcard";
 import EventsCalendar from "../components/events/EventsCalendar";
 import { getEvents } from "../api/eventsApi";
+import Footer from "../components/layout/Footer";
 
 export default function Events() {
   const [view, setView] = useState<"cards" | "calendar">("cards");
@@ -47,6 +48,7 @@ export default function Events() {
       ) : (
         <EventsCalendar events={events} />
       )}
+      <Footer />
     </div>
   );
 }

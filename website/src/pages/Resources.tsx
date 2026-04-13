@@ -15,9 +15,13 @@ function Resources() {
         Informative sessions to keep students and their families informed about
         their rights and policy changes.
       </p>
-      <div className="buttons">
-        <button>Learn More</button>
-      </div>
+      <a
+        href="https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="buttons"> Learn More</button>
+      </a>
     </div>
   );
 }
