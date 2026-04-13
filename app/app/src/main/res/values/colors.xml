@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#7d0e2b</color>
+    <color name="primaryLightColor">#534BAE</color>
+    <color name="primaryDarkColor">#000051</color>
+    <color name="secondaryColor">#FFC107</color>
+    <color name="secondaryLightColor">#FFF350</color>
+    <color name="secondaryDarkColor">#C79100</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#000000</color>
+
+    <color name="backgroundColor">#F5F5F5</color>
+    <color name="cardBackgroundColor">#FFFFFF</color>
+    <color name="dividerColor">#BDBDBD</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
