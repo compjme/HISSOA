@@ -1,12 +1,10 @@
 import COMMUNPIC from "../assets/CommunityPIC.png";
+import CommentSection from "../components/CommentSection/CommentSection";
 
 function Community() {
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Community Page</h1>;
-      <div className="COMMUNITYPIC">
-        <img src={COMMUNPIC} alt=""></img>
-      </div>
+      <CommentSection />
     </div>
   );
 }
