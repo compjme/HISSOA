@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import ISSOLOGO from "../../assets/ISSOLOGO.png";
+import { useAuth } from "../../context/AuthContext";
 
 const links = [
   { path: "/", label: "Home" },
@@ -18,6 +19,7 @@ const linkStyle = ({ isActive }: { isActive: boolean }) => ({
 
 /*cleans up the navigation bar so that it adds styling when active (navlink>link)*/
 export default function Navbar() {
+  const { user, logout } = useAuth();
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -25,12 +27,14 @@ export default function Navbar() {
           <img src={ISSOLOGO} alt="Company Logo" className="navbar-logo" />
         </NavLink>
       </div>
-
+    
       {links.map((link) => (
         <NavLink key={link.path} to={link.path} style={linkStyle}>
           {link.label}
         </NavLink>
       ))}
+      {user && <button onClick={logout}>Logout</button>}
+        
     </nav>
   );
 }
