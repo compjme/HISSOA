@@ -30,29 +30,66 @@ function Resources() {
     },
   ];
 
+  const organizations = [
+    // this array stores community organization names
+    "Higher Ed Immigration Portal",
+    "Make the Road",
+    "New York Immigration Coalition",
+  ];
+
   return (
-    <div className="">
-      <h1 style={{ textAlign: "center" }}>Resources Page</h1>
-      <p className="cunyCitizen">
-        Through a close collaboration with the{" "}
-        <span className="bold-text">CUNY Citizenship Now!</span> Program, ISSO
-        provides comprehensive legal support tailored to the needs of our campus
-        community. Services include: Legal Screenings: Personalized evaluations
-        to understand individual circumstances and provide actionable advice.
-        One-on-One Consultations: Private meetings with legal experts to address
-        specific concerns and questions. Workshops and Legal Updates:
-        Informative sessions to keep students and their families informed about
-        their rights and policy changes.
-      </p>
-      <a
-        href="https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <button className="buttons"> Learn More</button>
-      </a>
-    </div>
-  );
-}
+  <main className="resources-page">
+    <section className="resources-hero">
+      <h1>Student Resources</h1>
+      <p> HISSOA connects immigrant students and families with trusted legal, educational, and community resources</p>
+    </section>
+
+    <section className="resource-section">
+      <h2>CUNY Citizenship Now</h2>
+      <p>Through a close collaboration with {" "} <span className="bold">CUNY Citizenship Now!</span>, ISSO provides legal support tailored to the needs of our campus community.</p>
+    <ul>
+      <li>Legal screenings for students and families</li>
+      <li> One-on-one consulations with legal experts</li>
+      <li> Workshops and immigration policy updates</li>
+    </ul>
+
+    <a href= "https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/"
+    target= "_blank"
+    rel="noopener noreferrer"
+    >
+      <button className="buttons">Learn More</button>
+    </a>
+    </section>
+
+    <section className="resource-section">
+      <h2>Immigration Updates</h2>
+      <p>Students can stay informed about changes that may affect DACA, work permits, visas, citizenship, and other immigration-related matter</p>
+      
+      <a href="https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/services/immigration_updates/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >
+            <button className="buttons">View Updates</button>
+          </a>
+      </section>
+
+      <section className="resource-section">
+        <h2>Workshops and legal updates</h2>
+        <div className="resource-grid">
+
+          <div className="resource-card">
+            <h3>Know Your Rights</h3>
+            <p>Presentations that educate students and families about their legal rights and practical steps to protect themselves</p>
+          </div>
+
+          <div className="resource-card">
+            <h3>Policy Updates</h3>
+            <p> Sessions that explain immigration law and policy changes that may affect students and their families</p>
+          </div>
+        </div>
+      </section>
+
+  </main>
+  )
 
 export default Resources;
