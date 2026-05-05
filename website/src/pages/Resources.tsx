@@ -1,6 +1,35 @@
 import "./Resources.css";
 
 function Resources() {
+  const legalServices = [
+    //this is an array that stores the legal service organizations
+    {
+      name: "Coalition for Immigrant Freedom",
+      description:
+        "Free telephone or video consulations on immigration-related matters.",
+    },
+    {
+      name: "Immigrant Defense Project",
+      description:
+        "Free legal services for immigrants affected by the criminal justice system or facing detention or deportation.",
+    },
+    {
+      name: "Legal Aid Society",
+      description:
+        "Urgent legal services for low-income immigrants seeking lawful status, citizenship support, or deportation defense.",
+    },
+    {
+      name: "Northern Manhattan Imporvement Corporation",
+      description:
+        "Free legal assistance with citizenship, DACA, Temporary Protected Status, and other forms of immigrant relief. ",
+    },
+    {
+      name: "Unlocal",
+      description:
+        "Free legal advice and representation for immigrant communities throughout New York State. ",
+    },
+  ];
+
   return (
     <div className="">
       <h1 style={{ textAlign: "center" }}>Resources Page</h1>
