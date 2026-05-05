@@ -128,6 +128,7 @@ function Resources() {
       <section className="resource-section">
         <h2>Additional Legal Services</h2>
 
+        {/* This section uses the array made above and the .map() function that loops through each item and creates a card  */}
         <div className="resource-grid">
           {legalServices.map((service) => (
             <div className="resource-card" key={service.name}>
@@ -136,6 +137,24 @@ function Resources() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="resource-section">
+        <h2> Community Organizations</h2>
+
+        <ul className="organization-list">
+          {organizations.map((organization) => (
+            <li key={organization}>{organization}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="resource-disclaimer">
+        <p>
+          Disclaimer: HISSOA does not provide legal advice. Students and
+          Non-students should contact qualified legal professional or trusted
+          organizations for guidance about their specific situation
+        </p>
       </section>
     </main>
   );
