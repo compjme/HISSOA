@@ -3,7 +3,13 @@
   min-height: 100vh;
   padding: 50px 20px;
   line-height: 1.6;
-  background: linear-gradient(135deg, #efe3d3, #f8f1e8);
+  background-image: linear-gradient(rgba(248, 241, 232, 0.78), rgba(248, 241, 232, 0.78)),
+  url("../assets/ResourceBG.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
 }
 
 .transparent-card {
@@ -48,7 +54,6 @@
   color: #444;
 }
 
-
 .resource-section ul {
   padding-left: 22px;
   margin-top: 12px;
@@ -58,14 +63,12 @@
   margin-bottom: 8px;
 }
 
-
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
   margin-top: 20px;
 }
-
 
 .resource-card {
   padding: 24px;
@@ -93,7 +96,6 @@
 .bold {
   font-weight: bold;
 }
-
 
 .buttons {
   margin-top: 16px;
