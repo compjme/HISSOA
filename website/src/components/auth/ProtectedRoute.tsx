@@ -6,7 +6,7 @@ type ProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  return <>{children}</>;//  TEMP DEV BYPASS (remove later)
+  //  TEMP DEV BYPASS (remove later)
 
   const { user, loading, loginWithEmail, authError } = useAuth();
   const [email, setEmail] = useState("");
