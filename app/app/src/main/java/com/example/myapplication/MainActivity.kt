@@ -3,48 +3,50 @@ package com.example.myapplication
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.card.MaterialCardView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout)
 
-        // Contact Us Button -> MainActivity2
-        val contactButton = findViewById<Button>(R.id.button4)
-        contactButton.setOnClickListener {
+        // Contact Us Card
+        findViewById<MaterialCardView>(R.id.cardContact).setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
 
-        // Allies Button -> Main4
-        val alliesButton = findViewById<Button>(R.id.button5)
-        alliesButton.setOnClickListener {
+        // Allies Card
+        findViewById<MaterialCardView>(R.id.cardAllies).setOnClickListener {
             val intent = Intent(this, Main4::class.java)
             startActivity(intent)
         }
 
-        // Services Button -> Main3
-        val servicesButton = findViewById<Button>(R.id.button3)
-        servicesButton.setOnClickListener {
+        // Services Card
+        findViewById<MaterialCardView>(R.id.cardServices).setOnClickListener {
             val intent = Intent(this, Main3::class.java)
             startActivity(intent)
         }
 
-        // Legal Updates Button -> External URL
-        val legalButton = findViewById<Button>(R.id.button6)
-        val legalUrl = "https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/services/immigration_updates/"
-        legalButton.setOnClickListener {
+        // Legal Updates Card
+        findViewById<MaterialCardView>(R.id.cardLegal).setOnClickListener {
+            val legalUrl = "https://www.cuny.edu/about/administration/offices/communications-marketing/citizenship-now/services/immigration_updates/"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(legalUrl))
             startActivity(intent)
         }
 
-        // Events Button -> EventsActivity
-        val eventsButton = findViewById<Button>(R.id.button7)
-        eventsButton.setOnClickListener {
+        // Events Card
+        findViewById<MaterialCardView>(R.id.cardEvents).setOnClickListener {
             val intent = Intent(this, EventsActivity::class.java)
             startActivity(intent)
+        }
+
+        // Appointments Card (Example link, update as needed)
+        findViewById<MaterialCardView>(R.id.cardAppointments).setOnClickListener {
+             val appointmentsUrl = "https://www.brooklyn.edu/dosa/student-support-services/isso/appointments/"
+             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(appointmentsUrl))
+             startActivity(intent)
         }
     }
 }
