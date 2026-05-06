@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-
+import RoleSelection from "./components/profile/RoleSelection";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Scheduling from "./pages/Scheduling";
@@ -22,6 +22,7 @@ function App() {
         <Route path="*" element={<Notfound />} />
         <Route path="/scheduling" element={<ProtectedRoute> <Scheduling /> </ProtectedRoute> }/>
         <Route path="/community" element={ <ProtectedRoute> <Community /> </ProtectedRoute> }/>
+        <Route path="/profile/role"element={<ProtectedRoute><RoleSelection /> </ProtectedRoute> } />
       </Route>
     </Routes>
 

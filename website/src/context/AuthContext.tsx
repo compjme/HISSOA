@@ -1,10 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import type { Session, User } from "@supabase/supabase-js";
+import type { Profile } from "../types/profile";
 
 type AuthContextType = {
   user: User | null;
   session: Session | null;
+  profile: Profile | null;
   loading: boolean;
   authError: string;
   loginWithEmail: (email: string) => Promise<void>;
@@ -21,9 +23,46 @@ function isAllowedEmail(email: string | undefined) {
   );
 }
 
+async function getOrCreateProfile(user: User): Promise<Profile | null> {
+  const email = user.email ?? "";
+  const fullName =
+    user.user_metadata?.full_name ||
+    user.user_metadata?.name ||
+    null;
+
+  const { data: existingProfile, error: selectError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
+  if (existingProfile && !selectError) {
+    return existingProfile;
+  }
+
+  const { data: newProfile, error: insertError } = await supabase
+    .from("profiles")
+    .insert({
+      id: user.id,
+      email,
+      full_name: fullName,
+      role: "undergraduate",
+    })
+    .select()
+    .single();
+
+  if (insertError) {
+    console.error("Error creating profile:", insertError.message);
+    return null;
+  }
+
+  return newProfile;
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState("");
 
@@ -36,10 +75,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/scheduling`,
-      },
+        email,
+        options: {
+            shouldCreateUser: true,
+            emailRedirectTo: `${window.location.origin}/scheduling`,
+        },
     });
 
     if (error) {
@@ -51,6 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function logout() {
     setAuthError("");
+    setProfile(null);
     await supabase.auth.signOut();
   }
 
@@ -62,35 +103,53 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await supabase.auth.signOut();
       setSession(null);
       setUser(null);
+      setProfile(null);
       setAuthError("Please sign in with your Brooklyn College email.");
       return;
     }
 
     setSession(currentSession);
     setUser(currentUser);
+
+    if (currentUser) {
+      const profileData = await getOrCreateProfile(currentUser);
+      setProfile(profileData);
+    } else {
+      setProfile(null);
+    }
   }
 
   useEffect(() => {
-    supabase.auth.getSession().then(async ({ data }) => {
-      await handleSession(data.session);
-      setLoading(false);
-    });
+  const getSession = async () => {
+    const { data } = await supabase.auth.getSession();
+    setUser(data.session?.user ?? null);
+    setLoading(false);
+  };
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      async (_event, currentSession) => {
-        await handleSession(currentSession);
-        setLoading(false);
-      }
-    );
+  getSession();
 
-    return () => {
-      listener.subscription.unsubscribe();
-    };
-  }, []);
+  const { data: listener } = supabase.auth.onAuthStateChange(
+    (_event, session) => {
+      setUser(session?.user ?? null);
+    }
+  );
+
+  return () => {
+    listener.subscription.unsubscribe();
+  };
+}, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, session, loading, authError, loginWithEmail, logout }}
+      value={{
+        user,
+        session,
+        profile,
+        loading,
+        authError,
+        loginWithEmail,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
