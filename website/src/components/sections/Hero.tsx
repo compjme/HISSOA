@@ -29,7 +29,7 @@ const Hero = () => {
                 <button
                   onClick={() =>
                     document
-                      .getElementById("Team")
+                      .getElementById("team")
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
