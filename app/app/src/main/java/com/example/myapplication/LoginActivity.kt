@@ -13,8 +13,13 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
-
+import io.github.jan.supabase.auth.Auth
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import io.github.jan.supabase.auth.auth
 class LoginActivity : AppCompatActivity() {
+    private val supabase = SupabaseClient.client
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -31,8 +36,28 @@ class LoginActivity : AppCompatActivity() {
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                performAction("login", username, password, url)
+            // Mo initially had password I changed it to userPassword
+            val userPassword = passwordEditText.text.toString()
+
+            if (username.isNotEmpty() && userPassword.isNotEmpty()) {
+
+                // implementing supabse login username and password.
+
+                lifecycleScope.launch {
+                    try {
+                        supabase.auth.signInWith(io.github.jan.supabase.auth.providers.builtin.Email) {
+                            email = username
+                            password = userPassword
+                        }
+                        Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Toast.makeText(this@LoginActivity, "Login failed: ${e.localizedMessage ?: "Unknown error"}", Toast.LENGTH_LONG).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
             }
