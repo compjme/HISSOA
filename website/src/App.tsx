@@ -20,7 +20,7 @@ function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/faq" element={<FAQChatbot />} />
         <Route path="*" element={<Notfound />} />
-        <Route path="/scheduling" element={<ProtectedRoute> <Scheduling /> </ProtectedRoute> }/>
+        <Route path="/scheduling" element={<Scheduling />} />
         <Route path="/community" element={ <ProtectedRoute> <Community /> </ProtectedRoute> }/>
         <Route path="/profile/role"element={<ProtectedRoute><RoleSelection /> </ProtectedRoute> } />
       </Route>
