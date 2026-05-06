@@ -11,6 +11,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
@@ -18,18 +19,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val usernameEditText = findViewById<EditText>(R.id.editTextUsername)
-        val passwordEditText = findViewById<EditText>(R.id.editTextPassword)
+        val usernameEditText = findViewById<TextInputEditText>(R.id.editTextUsername)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.editTextPassword)
         val loginButton = findViewById<Button>(R.id.buttonLogin)
         val createAccountButton = findViewById<Button>(R.id.buttonCreateAccount)
         val guestTextView = findViewById<TextView>(R.id.textViewBypass)
 
-        // Replace with your Google Apps Script URL for User Management
         val url = "https://script.google.com/macros/s/AKfycbw5MQwTeJ5ARfW39EUYLgZDMY0hzExEYCBTrpu3saeetfDOyxdqVmb7-d0s60AdO46wJw/exec"
 
         loginButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val password = passwordEditText.text.toString()
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 performAction("login", username, password, url)
@@ -39,14 +39,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         createAccountButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            if (username.isNotEmpty() && password.isNotEmpty()) {
-                performAction("create", username, password, url)
-            } else {
-                Toast.makeText(this, "Please enter username and password to create account", Toast.LENGTH_SHORT).show()
-            }
+            // Navigate to CreateAccountActivity
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
         }
 
         guestTextView.setOnClickListener {
@@ -66,14 +61,10 @@ class LoginActivity : AppCompatActivity() {
             Request.Method.POST, url,
             { response ->
                 if (response == "Success") {
-                    if (action == "login") {
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Account created! You can now login.", Toast.LENGTH_LONG).show()
-                    }
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
                 }
