@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,7 @@
         <View
             android:id="@+id/headerBackground"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="220dp"
             android:background="@color/primaryColor"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +23,9 @@
             android:id="@+id/textViewContactTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="72dp"
             android:text="Contact Us"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,9 +36,10 @@
             android:id="@+id/infoCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="-40dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,14 +50,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="24dp">
 
                 <TextView
                     android:id="@+id/textViewAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2900 Bedford Ave, 117 Roosevelt Hall"
-                    android:textColor="@color/secondaryTextColor"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -65,14 +67,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="Brooklyn, NY, 11210"
-                    android:textColor="@color/secondaryTextColor"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@color/dividerColor" />
 
                 <TextView
@@ -80,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email: ISSO@brooklyn.cuny.edu"
-                    android:textColor="@color/primaryDarkColor"
+                    android:textColor="@color/primaryColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -88,16 +90,16 @@
                     android:id="@+id/textViewPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="6dp"
                     android:text="Phone: 718-951-5023"
-                    android:textColor="@color/primaryDarkColor"
+                    android:textColor="@color/primaryColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -106,20 +108,23 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginEnd="24dp"
-                        android:src="@drawable/instagram" />
+                        android:src="@drawable/instagram"
+                        android:contentDescription="Instagram" />
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginEnd="24dp"
-                        android:src="@drawable/insta" />
+                        android:src="@drawable/insta"
+                        android:contentDescription="LinkedIn" />
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:src="@drawable/tiktok" />
+                        android:src="@drawable/tiktok"
+                        android:contentDescription="TikTok" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -128,10 +133,10 @@
             android:id="@+id/textViewFormTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="Inquiry Form"
             android:textColor="@color/primaryColor"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/infoCard"
             app:layout_constraintTop_toBottomOf="@+id/infoCard" />
@@ -143,6 +148,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="Name"
+            app:boxStrokeColor="@color/primaryColor"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@+id/infoCard"
             app:layout_constraintStart_toStartOf="@+id/infoCard"
             app:layout_constraintTop_toBottomOf="@+id/textViewFormTitle">
@@ -151,7 +161,8 @@
                 android:id="@+id/editTextText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -161,6 +172,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Email"
+            app:boxStrokeColor="@color/primaryColor"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@+id/infoCard"
             app:layout_constraintStart_toStartOf="@+id/infoCard"
             app:layout_constraintTop_toBottomOf="@+id/layoutName">
@@ -169,7 +185,8 @@
                 android:id="@+id/editTextTextEmailAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -179,6 +196,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Phone"
+            app:boxStrokeColor="@color/primaryColor"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@+id/infoCard"
             app:layout_constraintStart_toStartOf="@+id/infoCard"
             app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
@@ -187,7 +209,8 @@
                 android:id="@+id/editTextPhone2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -197,6 +220,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:hint="Description"
+            app:boxStrokeColor="@color/primaryColor"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="3dp"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@+id/infoCard"
             app:layout_constraintStart_toStartOf="@+id/infoCard"
             app:layout_constraintTop_toBottomOf="@+id/layoutPhone">
@@ -204,9 +232,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextText3"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:gravity="top"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -217,6 +246,7 @@
             android:text="Submit Inquiry"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="@+id/infoCard"
             app:layout_constraintStart_toStartOf="@+id/infoCard"

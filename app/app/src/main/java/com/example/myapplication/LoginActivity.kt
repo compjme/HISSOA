@@ -11,6 +11,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 import io.github.jan.supabase.auth.Auth
 import androidx.lifecycle.lifecycleScope
@@ -23,28 +24,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        lifecycleScope.launch {
-            try {
-                supabase.auth.loadFromStorage()
-                // If we have a session, maybe skip login? 
-                // However, the error mentioned happened during loadSession.
-            } catch (e: Exception) {
-                // If loading fails (e.g. key not found), we ignore it and let the user log in.
-                e.printStackTrace()
-            }
-        }
-
-        val usernameEditText = findViewById<EditText>(R.id.editTextUsername)
-        val passwordEditText = findViewById<EditText>(R.id.editTextPassword)
+        val usernameEditText = findViewById<TextInputEditText>(R.id.editTextUsername)
+        val passwordEditText = findViewById<TextInputEditText>(R.id.editTextPassword)
         val loginButton = findViewById<Button>(R.id.buttonLogin)
         val createAccountButton = findViewById<Button>(R.id.buttonCreateAccount)
         val guestTextView = findViewById<TextView>(R.id.textViewBypass)
 
-        // Replace with your Google Apps Script URL for User Management
         val url = "https://script.google.com/macros/s/AKfycbw5MQwTeJ5ARfW39EUYLgZDMY0hzExEYCBTrpu3saeetfDOyxdqVmb7-d0s60AdO46wJw/exec"
 
         loginButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
+            val username = usernameEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
             // Mo initially had password I changed it to userPassword
             val userPassword = passwordEditText.text.toString()
@@ -74,28 +64,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         createAccountButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val userPassword = passwordEditText.text.toString()
-
-            if (username.isNotEmpty() && userPassword.isNotEmpty()) {
-
-                // Supabase create account username and passoword will go here.
-                lifecycleScope.launch {
-                    try {
-                        supabase.auth.signUpWith(io.github.jan.supabase.auth.providers.builtin.Email) {
-                            email = username
-                            password = userPassword
-                        }
-                        Toast.makeText(this@LoginActivity, "Account created successfully! ", Toast.LENGTH_LONG).show()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                        Toast.makeText(this@LoginActivity, "Signup failed: ${e.localizedMessage ?: "Unknown error"}", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-            } else {
-                Toast.makeText(this, "Please enter username and password to create account", Toast.LENGTH_SHORT).show()
-            }
+            // Navigate to CreateAccountActivity
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
         }
 
         guestTextView.setOnClickListener {
@@ -115,14 +86,10 @@ class LoginActivity : AppCompatActivity() {
             Request.Method.POST, url,
             { response ->
                 if (response == "Success") {
-                    if (action == "login") {
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Account created! You can now login.", Toast.LENGTH_LONG).show()
-                    }
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_LONG).show()
                 }

@@ -1,63 +1,72 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CommentSection.css";
 import ComPic from "../../assets/CommunityPIC.png";
-
-type Reply = {
-  id: number;
-  author: string;
-  text: string;
-  timestamp: string;
-};
+import { supabase } from "../../lib/supabaseClient";
+import { useAuth } from "../../context/AuthContext";
 
 type Comment = {
-  id: number;
+  id: string;
+  content: string;
   author: string;
-  text: string;
-  timestamp: string;
-  replies: Reply[];
+  user_id: string | null;
+  parent_id: string | null;
+  created_at: string;
 };
 
 const CommentSection: React.FC = () => {
+  const { user } = useAuth();
+
   const [name, setName] = useState("");
   const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState<Comment[]>([
-    {
-      id: 1,
-      author: "Maria Solicito",
-      text: "This space feels really welcoming and supportive.",
-      timestamp: "Just now",
-      replies: [
-        {
-          id: 11,
-          author: "Adam Safor",
-          text: "I agree, it's nice to have a place where we can share openly.",
-          timestamp: "Just now",
-        },
-      ],
-    },
-  ]);
-
+  const [comments, setComments] = useState<Comment[]>([]);
   const [replyInputs, setReplyInputs] = useState<{
-    [commentId: number]: { author: string; text: string; show: boolean };
+    [commentId: string]: { author: string; text: string; show: boolean };
   }>({});
 
-  const handlePostComment = () => {
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  async function fetchComments() {
+    const { data, error } = await supabase
+      .from("comments")
+      .select("*")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      console.error("Error fetching comments:", error.message);
+      return;
+    }
+
+    setComments(data || []);
+  }
+
+  async function handlePostComment() {
+    if (!user) {
+      alert("You must be signed in to post.");
+      return;
+    }
+
     if (!name.trim() || !commentText.trim()) return;
 
-    const newComment: Comment = {
-      id: Date.now(),
+    const { error } = await supabase.from("comments").insert({
+      content: commentText.trim(),
       author: name.trim(),
-      text: commentText.trim(),
-      timestamp: new Date().toLocaleString(),
-      replies: [],
-    };
+      user_id: user.id,
+      parent_id: null,
+    });
 
-    setComments([newComment, ...comments]);
+    if (error) {
+      console.error("Error posting comment:", error.message);
+      return;
+    }
+
     setName("");
     setCommentText("");
-  };
+    fetchComments();
+  }
 
-  const toggleReplyBox = (commentId: number) => {
+  function toggleReplyBox(commentId: string) {
     setReplyInputs((prev) => ({
       ...prev,
       [commentId]: {
@@ -66,13 +75,13 @@ const CommentSection: React.FC = () => {
         show: !prev[commentId]?.show,
       },
     }));
-  };
+  }
 
-  const handleReplyChange = (
-    commentId: number,
+  function handleReplyChange(
+    commentId: string,
     field: "author" | "text",
-    value: string,
-  ) => {
+    value: string
+  ) {
     setReplyInputs((prev) => ({
       ...prev,
       [commentId]: {
@@ -82,27 +91,29 @@ const CommentSection: React.FC = () => {
         [field]: value,
       },
     }));
-  };
+  }
 
-  const handlePostReply = (commentId: number) => {
+  async function handlePostReply(commentId: string) {
+    if (!user) {
+      alert("You must be signed in to reply.");
+      return;
+    }
+
     const replyData = replyInputs[commentId];
 
     if (!replyData?.author.trim() || !replyData?.text.trim()) return;
 
-    const newReply: Reply = {
-      id: Date.now(),
+    const { error } = await supabase.from("comments").insert({
+      content: replyData.text.trim(),
       author: replyData.author.trim(),
-      text: replyData.text.trim(),
-      timestamp: new Date().toLocaleString(),
-    };
+      user_id: user.id,
+      parent_id: commentId,
+    });
 
-    const updatedComments = comments.map((comment) =>
-      comment.id === commentId
-        ? { ...comment, replies: [...comment.replies, newReply] }
-        : comment,
-    );
-
-    setComments(updatedComments);
+    if (error) {
+      console.error("Error posting reply:", error.message);
+      return;
+    }
 
     setReplyInputs((prev) => ({
       ...prev,
@@ -112,7 +123,15 @@ const CommentSection: React.FC = () => {
         show: false,
       },
     }));
-  };
+
+    fetchComments();
+  }
+
+  const mainComments = comments.filter((comment) => comment.parent_id === null);
+
+  function getReplies(commentId: string) {
+    return comments.filter((comment) => comment.parent_id === commentId);
+  }
 
   return (
     <section
@@ -154,14 +173,14 @@ const CommentSection: React.FC = () => {
         </div>
 
         <div className="comment-list">
-          {comments.map((comment) => (
+          {mainComments.map((comment) => (
             <div key={comment.id} className="comment-item">
               <div className="comment-header">
                 <h4>{comment.author}</h4>
-                <span>{comment.timestamp}</span>
+                <span>{new Date(comment.created_at).toLocaleString()}</span>
               </div>
 
-              <p className="comment-message">{comment.text}</p>
+              <p className="comment-message">{comment.content}</p>
 
               <button
                 onClick={() => toggleReplyBox(comment.id)}
@@ -202,15 +221,17 @@ const CommentSection: React.FC = () => {
                 </div>
               )}
 
-              {comment.replies.length > 0 && (
+              {getReplies(comment.id).length > 0 && (
                 <div className="reply-list">
-                  {comment.replies.map((reply) => (
+                  {getReplies(comment.id).map((reply) => (
                     <div key={reply.id} className="reply-item">
                       <div className="comment-header">
                         <h5>{reply.author}</h5>
-                        <span>{reply.timestamp}</span>
+                        <span>
+                          {new Date(reply.created_at).toLocaleString()}
+                        </span>
                       </div>
-                      <p className="comment-message">{reply.text}</p>
+                      <p className="comment-message">{reply.content}</p>
                     </div>
                   ))}
                 </div>

@@ -1,42 +1,144 @@
+
 .team-section {
-  background-color: transparent;
-  border-radius: 24px;
-  font-family:'Times New Roman', Times, serif;
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 500;
-  line-height: 1.1;
-  font-style: oblique;
-  margin: 0;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  scroll-margin-top: 100px;
 }
 
-.team-card{
-  background: rgba(255, 255, 255, 0.4); /* transparency */
-  backdrop-filter: blur(10px);         /* glass effect */
-  -webkit-backdrop-filter: blur(10px); 
+/* 
+  Large outer card.
+  This matches the glass style from the About Us section.
+*/
+.team-card {
+  width: 95%;
+  max-width: none;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 24px;
   padding: 60px;
   text-align: center;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  margin-top: 250px;
 }
 
-#team {
-  scroll-margin-top: 100px;
+.team-header {
+  max-width: 800px;
+  margin: 0 auto 40px;
 }
 
-.team-content {
-  text-align: center;
-}
-
-.team-title {
+.team-header h2 {
   font-size: 2.5rem;
+  color: #7a1e2c;
+  margin-bottom: 12px;
+}
+
+.team-header p {
+  color: #444;
+  line-height: 1.7;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.team-member-card {
+  padding: 40px 30px;
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 14px 3px rgba(0, 0, 0, 0.16);
+}
+
+/* 
+  Circular profile image.
+*/
+.team-image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+/* 
+  Staff name.
+*/
+.team-member-card h3 {
+  font-size: 2rem;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 16px;
 }
 
-.team-description {
-  color: #555;
-  max-width: 600px;
-  margin: 0 auto;
+.team-role {
+  font-size: 1.4rem;
+  color: #222;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.team-email {
+  color: #9b1f4b;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.team-email:hover {
+  color: #7a1e2c;
+}
+
+/* 
+  Mobile/tablet layout.
+*/
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    padding: 40px 24px;
+  }
+
+  .team-member-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .team-role {
+    font-size: 1.2rem;
+  }
+}
+
+/* 
+  Smaller mobile screens.
+*/
+@media (max-width: 600px) {
+  .team-section {
+    padding: 40px 15px;
+  }
+
+  .team-image {
+    width: 170px;
+    height: 170px;
+  }
+
+  .team-header h2 {
+    font-size: 2rem;
+  }
+
+  .team-member-card {
+    padding: 32px 20px;
+  }
 }

@@ -1,42 +1,153 @@
-.about-section {
-  background-color: transparent;
-  border-radius: 24px;
-  font-family:'Times New Roman', Times, serif;
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 500;
-  line-height: 1.1;
-  font-style: oblique;
-  margin: 0;
+/* 
+  About section wrapper.
+  Adds spacing around the About card.
+*/
+.about-us {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.about-card{
-  background: rgba(255, 255, 255, 0.4); /* transparency */
-  backdrop-filter: blur(10px);         /* glass effect */
-  -webkit-backdrop-filter: blur(10px); 
+/* 
+  Allows smooth scrolling to stop below the navbar.
+*/
+#about {
+  scroll-margin-top: 100px;
+}
+
+/* 
+  Main about card.
+  Matches the glass-card style used on the homepage.
+*/
+.about-card {
+  max-width: none;
+  width: 95%;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 24px;
   padding: 60px;
   text-align: center;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  margin-top: 250px;
 }
 
-#about {
-  scroll-margin-top: 100px;
+/* 
+  Main quote text at the top.
+*/
+.about-quote {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.25;
+  font-style: oblique;
+  color: #2f2f2f;
+  margin: 0 0 35px;
 }
 
+/* 
+  Main paragraph content.
+*/
 .about-content {
-  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 35px;
 }
 
-.about-title {
-  font-size: 2.5rem;
+.about-content h3 {
+  font-size: 2rem;
+  color: #7a1e2c;
   margin-bottom: 16px;
 }
 
-.about-description {
-  color: #555;
-  max-width: 600px;
-  margin: 0 auto;
+.about-content p {
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* 
+  Grid for the three About cards.
+*/
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 30px;
+}
+
+/* 
+  Small cards inside the About section.
+*/
+.about-info-card {
+  padding: 24px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 14px 3px rgba(0, 0, 0, 0.16);
+}
+
+.about-info-card h4 {
+  color: #a35363;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.about-info-card p {
+  color: #444;
+  line-height: 1.6;
+}
+
+/* 
+  Closing sentence at the bottom of the About section.
+*/
+.about-closing {
+  max-width: 800px;
+  margin: 35px auto 0;
+  color: #444;
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+/* 
+  Tablet layout.
+*/
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-quote {
+    font-size: 2rem;
+  }
+}
+
+/* 
+  Mobile layout.
+*/
+@media (max-width: 600px) {
+  .about-us {
+    padding: 40px 15px;
+  }
+
+  .about-card {
+    padding: 32px 24px;
+  }
+
+  .about-quote {
+    font-size: 1.6rem;
+  }
+
+  .about-content h3 {
+    font-size: 1.6rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -10,6 +10,7 @@ const links = [
   { path: "/community", label: "Community" },
   { path: "/resources", label: "Resources" },
   { path: "/faq", label: "FAQ" },
+  { path: "/profile/role", label: "Role" },
 ];
 
 const linkStyle = ({ isActive }: { isActive: boolean }) => ({
@@ -31,6 +32,7 @@ export default function Navbar() {
       {links.map((link) => (
         <NavLink key={link.path} to={link.path} style={linkStyle}>
           {link.label}
+          
         </NavLink>
       ))}
       {user && <button onClick={logout}>Logout</button>}
