@@ -15,6 +15,8 @@ activity = "1.12.4"
 volley = "1.2.1"
 gridlayout = "1.0.0"
 swiperefreshlayout = "1.1.0"
+ktor = "3.0.3"
+supabase = "3.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +40,9 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+ktor-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+supabase-bom = { group = "io.github.jan-tennert.supabase", name = "bom", version.ref = "supabase" }
+supabase-postgrest = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
