@@ -6,8 +6,6 @@ type ProtectedRouteProps = {
 };
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  return <>{children}</>;//  TEMP DEV BYPASS (remove later)
-
   const { user, loading, loginWithEmail, authError } = useAuth();
   const [email, setEmail] = useState("");
 
@@ -32,14 +30,10 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
         style={{ padding: "10px", width: "280px", marginRight: "10px" }}
       />
 
-      <button onClick={() => loginWithEmail(email)}>
-        Send sign-in link
-      </button>
+      <button onClick={() => loginWithEmail(email)}>Send sign-in link</button>
 
       {authError && (
-        <p style={{ marginTop: "15px", color: "crimson" }}>
-          {authError}
-        </p>
+        <p style={{ marginTop: "15px", color: "crimson" }}>{authError}</p>
       )}
     </div>
   );
