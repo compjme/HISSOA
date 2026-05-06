@@ -13,7 +13,9 @@ class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<Even
 
     class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.textViewEventTitle)
-        val date: TextView = view.findViewById(R.id.textViewEventDate)
+        val day: TextView = view.findViewById(R.id.textViewEventDay)
+        val month: TextView = view.findViewById(R.id.textViewEventMonth)
+        val fullDate: TextView = view.findViewById(R.id.textViewEventFullDate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -24,13 +26,38 @@ class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<Even
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = events[position]
         holder.title.text = event.title
-        holder.date.text = event.date
+        holder.fullDate.text = event.date
+
+        // Extract and format the day with a suffix (e.g., 15th)
+        val dateParts = event.date.split(" ", ",")
+            .filter { it.isNotBlank() }
+            .take(3)
+
+        if (dateParts.size >= 2) {
+            val part1 = dateParts[0]
+            val part2 = dateParts[1]
+
+            val dayNumStr = if (part1.any { it.isDigit() }) part1.filter { it.isDigit() } 
+                            else part2.filter { it.isDigit() }
+            
+            if (dayNumStr.isNotEmpty()) {
+                val dayNum = dayNumStr.toInt()
+                val suffix = getDaySuffix(dayNum)
+                holder.day.text = "$dayNum$suffix"
+                
+                val monthStr = if (part1.any { it.isDigit() }) part2 else part1
+                holder.month.text = monthStr.take(3).uppercase()
+            } else {
+                setDefaultDate(holder)
+            }
+        } else {
+            setDefaultDate(holder)
+        }
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             if (event.url.isNotEmpty()) {
                 try {
-                    // Ensure the URL starts with http:// or https://
                     val finalUrl = if (!event.url.startsWith("http://") && !event.url.startsWith("https://")) {
                         "https://" + event.url
                     } else {
@@ -39,12 +66,25 @@ class EventsAdapter(private val events: List<Event>) : RecyclerView.Adapter<Even
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(finalUrl))
                     context.startActivity(intent)
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Could not open link: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Could not open link", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(context, "No link available for this event", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun getDaySuffix(n: Int): String {
+        if (n in 11..13) return "th"
+        return when (n % 10) {
+            1 -> "st"
+            2 -> "nd"
+            3 -> "rd"
+            else -> "th"
+        }
+    }
+
+    private fun setDefaultDate(holder: EventViewHolder) {
+        holder.day.text = "--"
+        holder.month.text = "EVENT"
     }
 
     override fun getItemCount() = events.size
