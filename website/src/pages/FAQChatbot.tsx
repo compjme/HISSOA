@@ -80,7 +80,7 @@ export default function FAQChatbot() {
   }
 
   async function handleSend() {
-    if (!input.trim()) return;
+    if (!input.trim()) return; //prevents empty messages or double sending
 
     const currentInput = input;
     const userMessage = {
@@ -134,7 +134,7 @@ export default function FAQChatbot() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your question..."
             onKeyDown={(e) => {
-              if (e.key === "Enter") handleSend();
+              if (e.key === "Enter" && !isLoading) handleSend();
             }}
           />
           <button onClick={handleSend} disabled={isLoading}>

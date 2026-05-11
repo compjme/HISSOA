@@ -80,7 +80,7 @@ const CommentSection: React.FC = () => {
   function handleReplyChange(
     commentId: string,
     field: "author" | "text",
-    value: string
+    value: string,
   ) {
     setReplyInputs((prev) => ({
       ...prev,
