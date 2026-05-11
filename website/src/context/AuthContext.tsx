@@ -68,11 +68,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function loginWithEmail(email: string) {
     setAuthError("");
-
-    if (!isAllowedEmail(email)) {
-      setAuthError("Please use your Brooklyn College email.");
-      return;
-    }
+// TEMP: allow any email while testing auth
+//    if (!isAllowedEmail(email)) {
+//      setAuthError("Please use your Brooklyn College email.");
+//      return;
+//    }
 
     const { error } = await supabase.auth.signInWithOtp({
         email,

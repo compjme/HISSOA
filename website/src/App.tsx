@@ -21,7 +21,7 @@ function App() {
         <Route path="/faq" element={<FAQChatbot />} />
         <Route path="*" element={<Notfound />} />
         <Route path="/scheduling" element={<Scheduling />} />
-        <Route path="/community" element={ <ProtectedRoute> <Community /> </ProtectedRoute> }/>
+        <Route path="/community" element={  <Community />  }/>
         <Route path="/profile/role"element={<ProtectedRoute><RoleSelection /> </ProtectedRoute> } />
       </Route>
     </Routes>

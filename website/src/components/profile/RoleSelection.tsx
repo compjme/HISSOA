@@ -16,9 +16,12 @@ export default function RoleSelection() {
     if (!user) return;
 
     const { error } = await supabase
-      .from("profiles")
-      .update({ role: selectedRole })
-      .eq("id", user.id);
+    .from("profiles")
+    .upsert({
+      id: user.id,
+      email: user.email,
+      role: selectedRole,
+  });
 
     if (error) {
       setMessage(error.message);
