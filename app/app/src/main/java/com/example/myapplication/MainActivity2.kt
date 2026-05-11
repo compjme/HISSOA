@@ -14,8 +14,16 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.from
+import androidx.lifecycle.lifecycleScope
+import  kotlinx.coroutines.launch
 
 class MainActivity2 : AppCompatActivity() {
+
+    private val supabase = SupabaseClient.client
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,8 +53,6 @@ class MainActivity2 : AppCompatActivity() {
 
         submitButton.setOnClickListener {
             submitButton.isEnabled = false
-            
-            val url = "https://script.google.com/macros/s/AKfycbw5MQwTeJ5ARfW39EUYLgZDMY0hzExEYCBTrpu3saeetfDOyxdqVmb7-d0s60AdO46wJw/exec"
 
             val name = nameEditText.text.toString()
             val email = emailEditText.text.toString()
@@ -59,40 +65,66 @@ class MainActivity2 : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            //SUPABASE INSERT WILL GO HERE
+            val inquiryData = mapOf(
+                "name" to name,
+                "email" to email,
+                "phone" to phone,
+                "description" to description
+            )
+
+            submitButton.isEnabled = false
+            lifecycleScope.launch {
+                try {
+                    supabase.from("Appointments").insert(inquiryData)
+                    Toast.makeText(this@MainActivity2, "Inquiry submitted successfully!", Toast.LENGTH_SHORT).show()
+                    nameEditText.text.clear()
+                    emailEditText.text.clear()
+                    phoneEditText.text.clear()
+                    descriptionEditText.text.clear()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(this@MainActivity2, "Submission failed: ${e.localizedMessage ?: "Unknown error"}", Toast.LENGTH_LONG).show()
+                } finally {
+                    submitButton.isEnabled = true
+                }
+            }
+
+
             val jsonObject = JSONObject()
             jsonObject.put("name", name)
             jsonObject.put("email", email)
             jsonObject.put("phone", phone)
             jsonObject.put("description", description)
 
-            val stringRequest = object : StringRequest(
-                Request.Method.POST, url,
-                { response ->
-                    submitButton.isEnabled = true
-                    Log.d("GAS_RESPONSE", "Success: $response")
-                    Toast.makeText(this, "Inquiry submitted successfully!", Toast.LENGTH_SHORT).show()
-                    nameEditText.text.clear()
-                    emailEditText.text.clear()
-                    phoneEditText.text.clear()
-                    descriptionEditText.text.clear()
-                },
-                { error ->
-                    submitButton.isEnabled = true
-                    Log.e("GAS_RESPONSE", "Error: ${error.message}")
-                    Toast.makeText(this, "Submission failed. Check internet and script deployment.", Toast.LENGTH_LONG).show()
-                }
-            ) {
-                override fun getBodyContentType(): String {
-                    return "application/json; charset=utf-8"
-                }
-
-                override fun getBody(): ByteArray {
-                    return jsonObject.toString().toByteArray(Charsets.UTF_8)
-                }
-            }
-
-            stringRequest.retryPolicy = DefaultRetryPolicy(30000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-            Volley.newRequestQueue(this).add(stringRequest)
+//            val stringRequest = object : StringRequest(
+//                Request.Method.POST, url,
+//                { response ->
+//                    submitButton.isEnabled = true
+//                    Log.d("GAS_RESPONSE", "Success: $response")
+//                    Toast.makeText(this, "Inquiry submitted successfully!", Toast.LENGTH_SHORT).show()
+//                    nameEditText.text.clear()
+//                    emailEditText.text.clear()
+//                    phoneEditText.text.clear()
+//                    descriptionEditText.text.clear()
+//                },
+//                { error ->
+//                    submitButton.isEnabled = true
+//                    Log.e("GAS_RESPONSE", "Error: ${error.message}")
+//                    Toast.makeText(this, "Submission failed. Check internet and script deployment.", Toast.LENGTH_LONG).show()
+//                }
+//            ) {
+//                override fun getBodyContentType(): String {
+//                    return "application/json; charset=utf-8"
+//                }
+//
+//                override fun getBody(): ByteArray {
+//                    return jsonObject.toString().toByteArray(Charsets.UTF_8)
+//                }
+//            }
+//
+//            stringRequest.retryPolicy = DefaultRetryPolicy(30000, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+//            Volley.newRequestQueue(this).add(stringRequest)
         }
     }
 }

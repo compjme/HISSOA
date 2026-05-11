@@ -9,10 +9,11 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "UserDB"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         private const val TABLE_USERS = "users"
         private const val KEY_ID = "id"
         private const val KEY_USERNAME = "username"
+        private const val KEY_EMAIL = "email"
         private const val KEY_PASSWORD = "password"
     }
 
@@ -20,19 +21,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val createTable = ("CREATE TABLE " + TABLE_USERS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_USERNAME + " TEXT UNIQUE,"
+                + KEY_EMAIL + " TEXT,"
                 + KEY_PASSWORD + " TEXT" + ")")
         db?.execSQL(createTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
-        onCreate(db)
+        if (oldVersion < 2) {
+            db?.execSQL("ALTER TABLE $TABLE_USERS ADD COLUMN $KEY_EMAIL TEXT")
+        }
     }
 
-    fun addUser(username: String, password: String): Boolean {
+    fun addUser(username: String, email: String, password: String): Boolean {
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(KEY_USERNAME, username)
+        values.put(KEY_EMAIL, email)
         values.put(KEY_PASSWORD, password)
         
         val result = db.insert(TABLE_USERS, null, values)
