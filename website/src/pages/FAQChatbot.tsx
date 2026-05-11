@@ -1,5 +1,5 @@
 import Footer from "../components/layout/Footer";
-
+import { supabase } from "../lib/supabaseClient";
 import { useState } from "react";
 import "../App.css";
 
@@ -44,6 +44,7 @@ export default function FAQChatbot() {
     },
   ]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function findAnswer(question: string) {
     const lowerQuestion = question.toLowerCase();
@@ -51,12 +52,15 @@ export default function FAQChatbot() {
     const match = faqs.find(
       (faq) =>
         lowerQuestion.includes(faq.question.toLowerCase().replace("?", "")) ||
-        faq.question.toLowerCase().includes(lowerQuestion)
+        faq.question.toLowerCase().includes(lowerQuestion),
     );
 
     if (match) return match.answer;
 
-    if (lowerQuestion.includes("appointment") || lowerQuestion.includes("schedule")) {
+    if (
+      lowerQuestion.includes("appointment") ||
+      lowerQuestion.includes("schedule")
+    ) {
       return faqs[1].answer;
     }
 
@@ -75,14 +79,31 @@ export default function FAQChatbot() {
     return "idk yet lol";
   }
 
-  function handleSend() {
-    if (!input.trim()) return;
+  async function handleSend() {
+    if (!input.trim()) return; //prevents empty messages or double sending
 
-    const userMessage = { sender: "user", text: input };
-    const botMessage = { sender: "bot", text: findAnswer(input) };
+    const currentInput = input;
+    const userMessage = {
+      sender: "user",
+      text: currentInput,
+    };
 
-    setMessages((prev) => [...prev, userMessage, botMessage]);
+    setMessages((prev) => [...prev, userMessage]); //Add user message first , wait for backend
     setInput("");
+    setIsLoading(true);
+
+    const { data, error } = await supabase.functions.invoke("isso-chatbot", {
+      body: {
+        message: currentInput,
+      },
+    });
+    const botMessage = {
+      sender: "bot",
+      text: error ? "Sorry, I could not answer that right now" : data.reply,
+    };
+
+    setMessages((prev) => [...prev, botMessage]); //add bot message second
+    setIsLoading(false);
   }
 
   return (
@@ -96,12 +117,15 @@ export default function FAQChatbot() {
             <div
               key={index}
               className={
-                message.sender === "user" ? "faq-message user" : "faq-message bot"
+                message.sender === "user"
+                  ? "faq-message user"
+                  : "faq-message bot"
               }
             >
               {message.text}
             </div>
           ))}
+          {isLoading && <div className="faq-message bot">Thinking ... </div>}
         </div>
 
         <div className="faq-input-row">
@@ -110,10 +134,12 @@ export default function FAQChatbot() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your question..."
             onKeyDown={(e) => {
-              if (e.key === "Enter") handleSend();
+              if (e.key === "Enter" && !isLoading) handleSend();
             }}
           />
-          <button onClick={handleSend}>Send</button>
+          <button onClick={handleSend} disabled={isLoading}>
+            {isLoading ? "Sending ..." : "Send"}
+          </button>
         </div>
       </div>
     </div>

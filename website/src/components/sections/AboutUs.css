@@ -15,10 +15,6 @@
   scroll-margin-top: 100px;
 }
 
-/* 
-  Main about card.
-  Matches the glass-card style used on the homepage.
-*/
 .about-card {
   max-width: none;
   width: 95%;
