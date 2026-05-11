@@ -6,19 +6,17 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-Deno.serve(async (req:Request) => {
-  // Handles the browser's CORS preflight request
+Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
-    // Get the message sent from React
     const { message } = await req.json();
 
     if (!message || typeof message !== "string") {
       return new Response(
-        JSON.stringify({ error: "Message is required." }),
+        JSON.stringify({ reply: "Message is required." }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -26,12 +24,11 @@ Deno.serve(async (req:Request) => {
       );
     }
 
-    // Get the private OpenAI key from Supabase secrets
-    const openaiApiKey = Deno.env.get("OPENAI_API_KEY");
+    const geminiApiKey = Deno.env.get("GEMINI_API_KEY");
 
-    if (!openaiApiKey) {
+    if (!geminiApiKey) {
       return new Response(
-        JSON.stringify({ error: "Missing OpenAI API key." }),
+        JSON.stringify({ reply: "Missing Gemini API key." }),
         {
           status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -39,33 +36,47 @@ Deno.serve(async (req:Request) => {
       );
     }
 
-    // Send the student's question to OpenAI
-    const openaiResponse = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${openaiApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-4.1-mini",
-        instructions: `
+    const prompt = `
 You are an ISSO assistant for Brooklyn College.
 
 Your job:
-- Help students understand ISSO resources, scheduling, community support, and general website navigation.
+- Help students understand ISSO (stands for Immigrant Student Success Office)resources, scheduling, community support, and general website navigation.
 - Keep answers clear, friendly, and concise.
 - If the answer depends on an official policy, tell the student to confirm with ISSO directly.
-- Do not give legal advice, immigration legal advice, or make up official Brooklyn College policies.
+- Do not give legal advice or immigration legal advice.
+- Do not make up official Brooklyn College policies.
 - If you do not know something, say that clearly and suggest contacting ISSO.
-        `,
-        input: message,
-      }),
-    });
 
-    const data = await openaiResponse.json();
+Student question:
+${message}
+`;
 
-    if (!openaiResponse.ok) {
-      console.error("OpenAI error:", data);
+    const geminiResponse = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "x-goog-api-key": geminiApiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                {
+                  text: prompt,
+                },
+              ],
+            },
+          ],
+        }),
+      },
+    );
+
+    const data = await geminiResponse.json();
+
+    if (!geminiResponse.ok) {
+      console.error("Gemini error:", data);
 
       return new Response(
         JSON.stringify({
@@ -79,11 +90,9 @@ Your job:
     }
 
     const reply =
-      data.output_text ||
-      data.output?.[0]?.content?.[0]?.text ||
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I could not generate a response.";
 
-    // Send the AI reply back to React
     return new Response(
       JSON.stringify({
         reply,
