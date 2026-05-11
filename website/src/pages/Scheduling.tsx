@@ -37,7 +37,7 @@ export default function Scheduling() {
         {user ? (
           <a
             className="schedule-primary-btn"
-            href="https://www.brooklyn.cuny.edu/web/about/offices/studentaffairs/navigate.php"
+            href="https://brooklyn-cuny.campus.eab.com/capabilities#/as3/appointment-new?begin_date=2026-05-11"
             target="_blank"
             rel="noreferrer"
           >
@@ -68,6 +68,16 @@ export default function Scheduling() {
           Email ISSO
         </a>
       </div>
+      <div className="navigate-help">
+        <h3>How to schedule with ISSO</h3>
+         <ol>
+          <li>Click “Open Navigate360”</li>
+          <li>Select <strong>“Student Affairs”</strong></li>
+          <li>Scroll down in the Service menu</li>
+          <li>Select an ISSO advising service</li>
+          <li>Select an available date and time</li>
+          </ol>
+          </div>
 
       <div className="appointment-grid">
         {appointmentTypes.map((item) => (
